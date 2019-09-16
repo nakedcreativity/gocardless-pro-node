@@ -30,6 +30,7 @@ class RedirectFlowsResource extends GocardlessResource
     return super.post(
       `/${this.resourceName}/${resourceId}/actions/complete`,
       params,
+      false
     );
   }
 }

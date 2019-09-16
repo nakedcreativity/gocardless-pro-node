@@ -76,7 +76,7 @@ describe("RedirectFlowsResource", () => {
           "Accept": "application/json",
           "Authorization": client.auth,
           "Content-Length": client.redirect_flows.wrapParams(
-            COMPLETE_REDIRECT_FLOWS_CORRECT_REQUEST,
+            COMPLETE_REDIRECT_FLOWS_CORRECT_REQUEST,false
           ).length,
           "Content-Type": "application/json",
           "GoCardless-Version": client.version,

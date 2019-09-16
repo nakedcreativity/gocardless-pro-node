@@ -67,21 +67,29 @@ abstract class GocardlessResource {
     });
   }
 
-  public wrapParams(params: Params<Object> | Object): string {
-    return JSON.stringify({
-      [this.resourceName]: "params" in params ? params.params : params,
-    });
+  public wrapParams(params: Params<Object> | Object, includeResourceName = true): string {
+    
+    if(includeResourceName == false){
+      return JSON.stringify(params);
+    }
+    else
+    {
+      return JSON.stringify({
+        [this.resourceName]: "params" in params ? params.params : params,
+      });
+    }
+    
   }
 
   public buildQuery(params: Params<Object> | Object): string {
     return querystring.stringify("params" in params ? params.params : params);
   }
 
-  protected post(path: string, params?: Params<Object> | Object): any {
+  protected post(path: string, params?: Params<Object> | Object, includeResourceName = true): any {
     let requestBody: string = "";
 
     if (params) {
-      requestBody = this.wrapParams(params);
+      requestBody = this.wrapParams(params,includeResourceName);
     }
 
     const { auth, host, version } = this.client;
